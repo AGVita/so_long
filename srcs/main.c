@@ -6,7 +6,7 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 14:36:53 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/04 20:17:24 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/05 16:41:58 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	exit_door(t_map *map)
 {
-	printf("Congratulations, you won the game for the %d steps\n", map->steps);
+	ft_printf("Grazz, u won the game for the %d steps\n", map->steps);
 	exit_game(map);
 	exit (0);
 }
@@ -39,7 +39,7 @@ static void	movement_realization(int x, int y, t_map *map)
 	}
 	map->px = x;
 	map->py = y;
-	printf ("Moves: %d \r", map->steps++);
+	ft_printf ("Moves: %d \r", map->steps++);
 }
 
 static int	key_hook(int keycode, t_map *map)

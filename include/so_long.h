@@ -6,18 +6,20 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 14:36:55 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/04 19:20:43 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/05 16:40:16 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <mlx.h>
-# include <stdio.h>
 # include <stdlib.h>
+# include <stdarg.h>
 # include <unistd.h>
 # include <fcntl.h>
 # define SCALE 60
+# define HEX "0123456789abcdef"
+# define HEXU "0123456789ABCDEF"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
@@ -66,5 +68,11 @@ void	check_was(t_map *map);
 void	render(t_map *map);
 void	render3(int x, int y, char *image, t_map *map);
 int		animation(t_map *map);
+int		ft_printf(const char *s, ...);
+int		print_char(int i);
+int		print_string(char *s);
+int		print_integer(long n, int count);
+int		print_xx(unsigned long n, int count);
+int		print_xu(unsigned int n, int count);
 
 #endif

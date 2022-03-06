@@ -6,13 +6,13 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 11:44:27 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/02/27 20:50:18 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:33:14 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../include/so_long_bonus.h"
 
-static void	check_chars(t_map *map)
+void	check_chars(t_map *map)
 {
 	int	i;
 	int	j;
@@ -46,7 +46,7 @@ static void	check_wallp2(char *string, t_map *map)
 	}
 }
 
-static void	check_wallp1(t_map *map)
+void	check_wallp1(t_map *map)
 {
 	int	i;
 
@@ -61,25 +61,40 @@ static void	check_wallp1(t_map *map)
 	}
 }
 
-void	check_was(t_map *map)
+static	void	add_enemy(t_map *map, int y, int x)
 {
-	int	i;
-	int	j;
+	t_list	*list;
+	t_enemy	*enemy;
 
-	i = -1;
-	while (map->mapdata[++i])
+	enemy = malloc(sizeof(t_enemy));
+	if (map->mapdata[y][x] == 'V')
+		enemy->type = HORIZONTAL;
+	else
+		enemy->type = VERTICAL;
+	enemy->x = x;
+	enemy->y = y;
+	enemy->flag = 1;
+	list = ft_lstnew(enemy);
+	if (!list)
+		puterror("memory allocation failed\n", map);
+	ft_lstadd_back(&map->enems, list);
+}
+
+void	check_enemies(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < map->height)
 	{
-		j = 0;
-		while (map->mapdata[i][j] != '\n')
-			if (!ft_strchr("1EP0C", map->mapdata[i][j++]))
-				puterror("forbidden symbol on the map\n", map);
+		x = 0;
+		while (x < map->length)
+		{
+			if (map->mapdata[y][x] == 'V' || map->mapdata[y][x] == 'H')
+				add_enemy(map, y, x);
+			x++;
+		}
+		y++;
 	}
-	check_wallp1(map);
-	check_chars(map);
-	if (map->collects == 0)
-		puterror("you have no collectibles on the map\n", map);
-	if (map->player != 1)
-		puterror("invalid number of players\n", map);
-	if (map->exit == 0)
-		puterror ("you have no way out\n", map);
 }

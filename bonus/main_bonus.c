@@ -6,32 +6,23 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 14:36:53 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/04 16:50:49 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/05 20:23:11 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../include/so_long_bonus.h"
 
-static int	exit_game(t_map *map)
+static int	exit_door(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	while (map->mapdata[i])
-	{
-		free(map->mapdata[i]);
-		i++;
-	}
-	free(map->mapdata);
-	mlx_destroy_window(map->mlx, map->mlx_win);
-	printf("GAME CLOSED");
+	ft_printf("Grazz, u won the game for the %d steps\n", map->steps);
+	exit_game(map);
 	exit (0);
 }
 
 static void	movement_realization(int x, int y, t_map *map)
 {
 	if (map->collects == -1 && map->mapdata[y][x] == 'E')
-		exit_game(map);
+		exit_door(map);
 	else if (map->mapdata[y][x] == '1' || map->mapdata[y][x] == 'E')
 		return ;
 	else if (map->mapdata[y][x] == '0')
@@ -48,7 +39,7 @@ static void	movement_realization(int x, int y, t_map *map)
 	}
 	map->px = x;
 	map->py = y;
-	printf ("Moves: %d\n", map->steps++);
+	print_info_about_moves(map);
 }
 
 static int	key_hook(int keycode, t_map *map)
@@ -73,6 +64,7 @@ static void	init_map(t_map *map)
 	map->exit = 0;
 	map->player = 0;
 	map->steps = 0;
+	map->enems = NULL;
 }
 
 int	main(int argc, char **argv)

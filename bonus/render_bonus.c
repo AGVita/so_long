@@ -6,7 +6,7 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:05:28 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/04 18:25:41 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/06 20:49:54 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	render2(int x, int y, char c, t_map *map)
 	}
 	else if (c == 'E')
 		render3(x, y, EXIT, map);
+	else if (c == 'H' || c == 'V')
+		render3(x, y, ENEMY2, map);
 }
 
 void	render(t_map *map)

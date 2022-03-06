@@ -6,7 +6,7 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 19:40:42 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/02/27 18:22:03 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:43:13 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void	read_file(char	*filename, t_map *map)
 	int	fd;
 
 	map->height = get_height(filename, map);
+	if (map->height == 0)
+		puterror("Map is empty\n", map);
 	map->mapdata = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (map->mapdata == NULL)
 		puterror("memory allocation failed\n", map);

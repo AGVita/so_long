@@ -6,7 +6,7 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:34:43 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/04 17:06:33 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/06 19:52:18 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,43 @@ static void	player_animation(t_map *map)
 	i++;
 }
 
+static void	enemy_animation(t_map *map)
+{
+	static int	a;
+	t_list		*list;
+	t_enemy		*enemy;
+
+	list = map->enems;
+	if (a == 3000 || a == 6000 || a == 9000 || a == 12000 || a == 15000)
+	{
+		while (list)
+		{
+			enemy = list->data;
+			if (a == 3000)
+				render3(enemy->x * SCALE, enemy->y * SCALE, ENEMY2, map);
+			else if (a == 6000)
+				render3(enemy->x * SCALE, enemy->y * SCALE, ENEMY3, map);
+			else if (a == 9000)
+				render3(enemy->x * SCALE, enemy->y * SCALE, ENEMY4, map);
+			else if (a == 12000)
+				render3(enemy->x * SCALE, enemy->y * SCALE, ENEMY5, map);
+			else if (a == 15000)
+				render3(enemy->x * SCALE, enemy->y * SCALE, ENEMY6, map);
+			list = list->next;
+		}
+	}
+	if (a++ == 18000)
+		a = 0;
+}
+
 int	animation(t_map *map)
 {
 	if (map->collects == 0)
 		open_exit(map);
 	coll_animation(map);
 	player_animation(map);
+	enemy_animation(map);
+	check_position(map);
+	move_enemies(map);
 	return (0);
 }
