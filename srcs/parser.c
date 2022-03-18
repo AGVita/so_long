@@ -6,7 +6,7 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 19:40:42 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/05 17:43:13 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/12 19:07:55 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	check_rectangle(t_map *map)
 	{
 		if (map->length != (int)ft_strlen(map->mapdata[i++]))
 			puterror("the map is not rectangular\n", map);
-		i++;
 	}
 }
 

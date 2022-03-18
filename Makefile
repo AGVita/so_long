@@ -6,7 +6,7 @@
 #    By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 18:41:06 by rzarquon          #+#    #+#              #
-#    Updated: 2022/03/06 18:26:49 by rzarquon         ###   ########.fr        #
+#    Updated: 2022/03/18 14:48:12 by rzarquon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,28 +39,30 @@ CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-MLX		=	-lmlx -framework OpenGL -framework AppKit
+MLX		=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all		:	$(NAME)
 	
 $(NAME)	:	$(OBJ) $(HEADER)
 	@echo $(Y)Compiling [$(NAME)]...$(X)
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(MLX)
+	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(MLX)
 	@echo $(G)Finished [$(NAME)]$(X)
 
 %.o	:	%.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 bonus	:
 	@make OBJ="$(OBJ_B)"
 
 clean	:
 	@echo $(Y)Deleting object files...$(X)
-	rm -f $(OBJ) $(OBJ_B)
+	@rm -f $(OBJ) $(OBJ_B)
 	@echo $(G)Files deletion completed...$(X)
 
 fclean	: clean
-	rm -f $(NAME)
+	@echo $(Y)and deleting [$(NAME)]...$(X)
+	@rm -f $(NAME)
+	@echo $(G)[$(NAME)]deletion completed...$(X)
 
 re		: fclean all
 

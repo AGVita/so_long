@@ -6,7 +6,7 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 11:44:27 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/06 17:33:14 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:07:29 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static	void	add_enemy(t_map *map, int y, int x)
 	t_enemy	*enemy;
 
 	enemy = malloc(sizeof(t_enemy));
+	if (!enemy)
+		puterror("memory allocation failed\n", map);
 	if (map->mapdata[y][x] == 'V')
 		enemy->type = HORIZONTAL;
 	else

@@ -6,13 +6,13 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 14:36:55 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/05 16:40:16 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:47:29 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include <mlx.h>
+# include "mlx.h"
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>

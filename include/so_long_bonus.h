@@ -6,13 +6,13 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 14:36:55 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/06 20:12:58 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:47:35 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
-# include <mlx.h>
+# include "mlx.h"
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
@@ -104,7 +104,6 @@ void	parser(char	*filename, t_map *map);
 void	render(t_map *map);
 void	render3(int x, int y, char *image, t_map *map);
 int		animation(t_map *map);
-int		animation(t_map *map);
 int		ft_printf(const char *s, ...);
 int		print_char(int i);
 int		print_string(char *s);
@@ -121,5 +120,6 @@ t_list	*ft_lstlast(t_list *lst);
 void	check_enemies(t_map *map);
 void	move_enemies(t_map *map);
 void	check_position(t_map *map);
+void	ft_lstclear(t_list **lst, void (*del)(void *));
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 10:06:14 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/05 20:18:17 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/07 14:48:41 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,19 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}	
 	if (lst)
 		ft_lstlast(*(lst))->next = new;
+}
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*temp;
+
+	while (*lst)
+	{
+		if ((*lst)->data)
+			del((*lst)->data);
+		temp = *lst;
+		*lst = temp->next;
+		free(temp);
+	}
+	lst = (NULL);
 }

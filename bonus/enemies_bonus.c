@@ -6,7 +6,7 @@
 /*   By: rzarquon <rzarquon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 18:27:03 by rzarquon          #+#    #+#             */
-/*   Updated: 2022/03/06 21:05:15 by rzarquon         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:25:30 by rzarquon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ void	check_position(t_map *map)
 	{	
 		enemy = list->data;
 		if (enemy->x == map->px && enemy->y == map->py)
-			// game_over(map);
-			ft_printf("BEBEBE");
+		{	
+			ft_printf("GAME OVER bcs u DIE 0_o\n");
+			exit_game(map);
+		}
 		list = list->next;
 	}
 }
 
-static void	move_horizontal_enemy(t_map *map, t_enemy *enemy)
+static void	move_vertical_enemy(t_map *map, t_enemy *enemy)
 {
 	if (enemy->flag == 1 && map->mapdata[enemy->y][enemy->x + 1] == '0')
 	{
@@ -52,11 +54,10 @@ static void	move_horizontal_enemy(t_map *map, t_enemy *enemy)
 		enemy->flag = 1;
 }
 
-static void	move_vertical_enemy(t_map *map, t_enemy *enemy)
+static void	move_horizontal_enemy(t_map *map, t_enemy *enemy)
 {
 	if (enemy->flag == 1 && map->mapdata[enemy->y + 1][enemy->x] == '0')
 	{
-		ft_printf("AAA");
 		render3(enemy->x * SCALE, enemy->y * SCALE, GROUND, map);
 		render3(enemy->x * SCALE, (enemy->y + 1) * SCALE, ENEMY1, map);
 		map->mapdata[enemy->y][enemy->x] = '0';
